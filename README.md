@@ -12,10 +12,24 @@ Note that all calculations are done in base 10.
 - [pdf/M74207281.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M74207281.pdf) which is not happy :-(.
 
 
-## Help
+## Usage
 
+```
+HappyMersennePrime.jar [options] exponent
 
--d mersennePrimes -s http://lcn2.github.io/mersenne-english-name/m42643801/huge-prime-c-e.html.gz 42643801
+ -a,--author <name>     name of the author to be used for the front page
+ -d,--dir <directory>   directory to look for the mersenne prime number
+ -h,--help              display this help
+ -s,--source <url>      source url the mersenne number had been downloaded
+                        from
+ -v,--version           display current version
+```
+
+### Usage example
+
+`java -jar HappyMersennePrime.jar -d mersennePrimes -s http://lcn2.github.io/mersenne-english-name/m42643801/huge-prime-c-e.html.gz 42643801`
+
+Would search for the mersenne prime file `mersennePrimes\M42643801.txt.gz`.
 
 
 ## Build the pdf
