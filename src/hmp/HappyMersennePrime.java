@@ -17,6 +17,7 @@ public class HappyMersennePrime {
 
     public static void main(String[] args) {
         int exponent = 57885161;
+        String author = "Adrian Suter";
         String sourceUrl = "http://lcn2.github.io/mersenne-english-name/m57885161/huge-prime-c-e.html.gz";
 
         try {
@@ -238,13 +239,12 @@ public class HappyMersennePrime {
             }
             frontPageBufferedWriter.write("\\par}\n");
             frontPageBufferedWriter.write("\\vspace{2cm}\n");
-            frontPageBufferedWriter.write("{\\Large\\itshape Adrian Suter\\par}\n");
+            frontPageBufferedWriter.write("{\\Large\\itshape " + author + "\\par}\n");
             frontPageBufferedWriter.write("\\vspace{1.5cm}\n");
             frontPageBufferedWriter.write("{\\large \\today\\par}\n");
             frontPageBufferedWriter.write("\\vspace{1.5cm}\n");
-            frontPageBufferedWriter.write("calculated by\\par\n");
-            frontPageBufferedWriter.write("Adrian \\textsc{Suter}\\footnote{Mersenne prime number downloaded from " + sourceUrl + "}\\par\n");
-            frontPageBufferedWriter.write("adrian@suter-wirz.ch\\par\n");
+            frontPageBufferedWriter.write("generated and calculated by\\par\n");
+            frontPageBufferedWriter.write("https://github.com/adriansuter/HappyMersennePrime\\footnote{Mersenne prime number downloaded from " + sourceUrl + "}\\par\n");
             frontPageBufferedWriter.write("\\vfill\n");
             frontPageBufferedWriter.write("\\begin{flushleft}\n");
             frontPageBufferedWriter.write("\\textsc{Introduction}\n\n");
