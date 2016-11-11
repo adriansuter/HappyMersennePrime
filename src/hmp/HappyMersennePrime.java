@@ -48,7 +48,7 @@ public class HappyMersennePrime {
             bw.write(10);
             bw.write("\\include{M" + exponent + "FP}");
             bw.write(10);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("C:\\Users\\Adrian\\Documents\\SmartXML\\V1\\M" + exponent + ".txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("mersennePrimes\\M" + exponent + ".txt"));
             int lineLength = 97;
             int bufferSize = lineLength * 48;
             char[] buffer = new char[bufferSize];
