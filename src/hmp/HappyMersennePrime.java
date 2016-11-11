@@ -8,19 +8,85 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 public class HappyMersennePrime {
 
     public static void main(String[] args) {
-        int exponent = 42643801;
-        String author = "Adrian Suter";
-        String sourceUrl = "http://lcn2.github.io/mersenne-english-name/m42643801/huge-prime-c-e.html.gz";
+        String cmdLineSyntax = "HappyMersennePrime.jar [options] exponent";
+
+        Options options = new Options();
+        options.addOption(Option.builder("h").longOpt("help").desc("display this help").build());
+        options.addOption(Option.builder("v").longOpt("version").desc("display current version").build());
+        options.addOption(Option.builder("d").longOpt("dir").hasArg(true).argName("directory").desc("directory to look for the mersenne prime number").build());
+        options.addOption(Option.builder("a").longOpt("author").hasArg(true).argName("name").desc("name of the author to be used for the front page").build());
+        options.addOption(Option.builder("s").longOpt("source").hasArg(true).argName("url").desc("source url the mersenne number had been downloaded from").build());
 
         try {
+            CommandLineParser parser = new DefaultParser();
+            CommandLine cmd = parser.parse(options, args);
+
+            if (cmd.hasOption("h")) {
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp(cmdLineSyntax, options);
+                System.exit(0);
+            }
+
+            if (cmd.hasOption("v")) {
+                System.out.println("HappyMersennePrime v1.0.0");
+                System.exit(0);
+            }
+
+            List<String> argList = cmd.getArgList();
+            if (argList.size() != 1) {
+                System.err.println("Please enter the mersenne exponent.");
+
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp(cmdLineSyntax, options);
+                System.exit(0);
+            }
+
+            int exponent = 0;
+            try {
+                exponent = Integer.parseInt(argList.get(0));
+            } catch (NumberFormatException exception) {
+                System.err.println("The given exponent is not a valid integer.");
+                System.exit(0);
+            }
+
+            String mersenneFilePath = "M" + exponent + ".txt.gz";
+            if (cmd.hasOption("d")) {
+                mersenneFilePath = cmd.getOptionValue("d") + File.separator + mersenneFilePath;
+            }
+
+            File mersenneFile = new File(mersenneFilePath);
+            if (!mersenneFile.exists()) {
+                System.err.println("The mersenne prime file " + mersenneFile.getPath() + " could not be found.");
+                System.exit(0);
+            }
+
+            String author = "Adrian Suter";
+            if (cmd.hasOption("a")) {
+                author = cmd.getOptionValue("a");
+            }
+
+            String sourceUrl = "";
+            if (cmd.hasOption("s")) {
+                sourceUrl = cmd.getOptionValue("s");
+            }
+
             int i;
             int nrCharsRead;
             int lineLength = 97;
@@ -30,11 +96,10 @@ public class HappyMersennePrime {
             int[] squares = new int[]{0, 1, 4, 9, 16, 25, 36, 49, 64, 81};
             int[] totalDigits = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-            FileInputStream mersenneFileInputStream = new FileInputStream(new File("mersennePrimes\\M" + exponent + ".txt.gz"));
+            FileInputStream mersenneFileInputStream = new FileInputStream(mersenneFile);
             GZIPInputStream mersenneInputStream = new GZIPInputStream(mersenneFileInputStream);
             InputStreamReader inputStreamReader = new InputStreamReader(mersenneInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//            BufferedReader bufferedReader = new BufferedReader(new FileReader("mersennePrimes\\M" + exponent + ".txt"));
 
             // Create the main tex-file.
             File file = new File("M" + exponent + ".tex");
@@ -245,7 +310,11 @@ public class HappyMersennePrime {
             frontPageBufferedWriter.write("{\\large \\today\\par}\n");
             frontPageBufferedWriter.write("\\vspace{1.5cm}\n");
             frontPageBufferedWriter.write("generated and calculated by\\par\n");
-            frontPageBufferedWriter.write("https://github.com/adriansuter/HappyMersennePrime\\footnote{Mersenne prime number downloaded from " + sourceUrl + "}\\par\n");
+            frontPageBufferedWriter.write("https://github.com/adriansuter/HappyMersennePrime");
+            if (!sourceUrl.isEmpty()) {
+                frontPageBufferedWriter.write("\\footnote{Mersenne prime number downloaded from " + sourceUrl + "}");
+            }
+            frontPageBufferedWriter.write("\\par\n");
             frontPageBufferedWriter.write("\\vfill\n");
             frontPageBufferedWriter.write("\\begin{flushleft}\n");
             frontPageBufferedWriter.write("\\textsc{Introduction}\n\n");
@@ -260,9 +329,14 @@ public class HappyMersennePrime {
             inputStreamReader.close();
             mersenneInputStream.close();
             mersenneFileInputStream.close();
+        } catch (ParseException exception) {
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp(cmdLineSyntax, options);
+            System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(HappyMersennePrime.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     /**
