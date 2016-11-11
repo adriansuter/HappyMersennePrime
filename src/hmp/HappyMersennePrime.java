@@ -16,9 +16,9 @@ import java.util.zip.GZIPInputStream;
 public class HappyMersennePrime {
 
     public static void main(String[] args) {
-        int exponent = 57885161;
+        int exponent = 42643801;
         String author = "Adrian Suter";
-        String sourceUrl = "http://lcn2.github.io/mersenne-english-name/m57885161/huge-prime-c-e.html.gz";
+        String sourceUrl = "http://lcn2.github.io/mersenne-english-name/m42643801/huge-prime-c-e.html.gz";
 
         try {
             int i;
