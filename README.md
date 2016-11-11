@@ -12,9 +12,10 @@ Note that all calculations are done in base 10.
 - [pdf/M74207281.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M74207281.pdf) which is not happy :-(.
 
 
-## Usage
+## Help
 
-TODO...
+
+-d mersennePrimes -s http://lcn2.github.io/mersenne-english-name/m42643801/huge-prime-c-e.html.gz 42643801
 
 
 ## Build the pdf

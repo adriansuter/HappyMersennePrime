@@ -1,4 +1,5 @@
 *.class
+/build/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -13,4 +14,3 @@ hs_err_pid*
 # TeX and output/generated/temp files
 /*.tex
 /M*
-/build/

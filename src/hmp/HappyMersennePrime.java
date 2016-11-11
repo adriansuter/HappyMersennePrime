@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,12 +21,29 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+/**
+ * The main class.
+ *
+ * @author Adrian Suter, https://github.com/adriansuter/
+ */
 public class HappyMersennePrime {
 
-    public static void main(String[] args) {
-        String cmdLineSyntax = "HappyMersennePrime.jar [options] exponent";
+    /**
+     * The version number.
+     */
+    public static final String VERSION = "v1.0.0";
 
-        Options options = new Options();
+    /**
+     * The main method.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        // The command line syntax.
+        final String cmdLineSyntax = "HappyMersennePrime.jar [options] exponent";
+
+        // The command line options.
+        final Options options = new Options();
         options.addOption(Option.builder("h").longOpt("help").desc("display this help").build());
         options.addOption(Option.builder("v").longOpt("version").desc("display current version").build());
         options.addOption(Option.builder("d").longOpt("dir").hasArg(true).argName("directory").desc("directory to look for the mersenne prime number").build());
@@ -39,19 +55,21 @@ public class HappyMersennePrime {
             CommandLine cmd = parser.parse(options, args);
 
             if (cmd.hasOption("h")) {
+                // Show help and exit.
                 HelpFormatter formatter = new HelpFormatter();
                 formatter.printHelp(cmdLineSyntax, options);
                 System.exit(0);
             }
 
             if (cmd.hasOption("v")) {
-                System.out.println("HappyMersennePrime v1.0.0");
+                // Show version number and exit.
+                System.out.println("HappyMersennePrime " + VERSION);
                 System.exit(0);
             }
 
             List<String> argList = cmd.getArgList();
             if (argList.size() != 1) {
-                System.err.println("Please enter the mersenne exponent.");
+                System.err.println("Required argument {exponent} is missing.");
 
                 HelpFormatter formatter = new HelpFormatter();
                 formatter.printHelp(cmdLineSyntax, options);
@@ -62,7 +80,10 @@ public class HappyMersennePrime {
             try {
                 exponent = Integer.parseInt(argList.get(0));
             } catch (NumberFormatException exception) {
-                System.err.println("The given exponent is not a valid integer.");
+                System.err.println("Argument {exponent} needs to be an integer.");
+
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp(cmdLineSyntax, options);
                 System.exit(0);
             }
 
