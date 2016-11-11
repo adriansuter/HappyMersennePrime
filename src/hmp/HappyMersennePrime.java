@@ -195,6 +195,7 @@ public class HappyMersennePrime {
             int nr = totalSum;
             do {
                 if ((nr = HappyMersennePrime.squareOfDigits(nr)) == 1) {
+                    sequence.add(nr);
                     isHappy = true;
                     break;
                 }
