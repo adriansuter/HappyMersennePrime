@@ -231,7 +231,6 @@ public class HappyMersennePrime {
                 bw.write("\\begin{framed}\n");
                 bw.write("\\begin{multicols}{2}\n");
                 bw.write("\\noindent\n");
-                bw.write(10);
                 int pageSum = 0;
                 for (int i2 = 0; i2 < 10; ++i2) {
                     pageSum += pageDigits[i2] * squares[i2];
@@ -247,7 +246,6 @@ public class HappyMersennePrime {
                 bw.write("\\begin{framed}\n");
                 bw.write("\\begin{multicols}{2}\n");
                 bw.write("\\noindent\n");
-                bw.write(10);
                 int totalSum = 0;
                 for (int i3 = 0; i3 < 10; ++i3) {
                     totalSum += totalDigits[i3] * squares[i3];
