@@ -10,6 +10,7 @@ Note that all calculations are done in base 10.
 - [pdf/M42643801.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M42643801.pdf) which is happy :-).
 - [pdf/M57885161.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M57885161.pdf) which is not happy :-(.
 - [pdf/M74207281.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M74207281.pdf) which is not happy :-(.
+- [pdf/M77232917.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M77232917.pdf) which is not happy :-(.
 
 
 ## Usage
