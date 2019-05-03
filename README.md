@@ -11,6 +11,7 @@ Note that all calculations are done in base 10.
 - [pdf/M57885161.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M57885161.pdf) which is not happy :-(.
 - [pdf/M74207281.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M74207281.pdf) which is not happy :-(.
 - [pdf/M77232917.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M77232917.pdf) which is not happy :-(.
+- [pdf/M82589933.pdf](https://github.com/adriansuter/HappyMersennePrime/blob/master/pdf/M82589933.pdf) which is not happy :-(.
 
 
 ## Usage
