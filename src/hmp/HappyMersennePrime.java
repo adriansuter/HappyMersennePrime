@@ -31,7 +31,7 @@ public class HappyMersennePrime {
     /**
      * The version number.
      */
-    public static final String VERSION = "v1.0.0";
+    public static final String VERSION = "v1.0.1";
 
     /**
      * The main method.
