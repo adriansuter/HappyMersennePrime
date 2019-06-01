@@ -31,7 +31,7 @@ public class HappyMersennePrime {
     /**
      * The version number.
      */
-    public static final String VERSION = "v1.0.1";
+    public static final String VERSION = "v1.0.2";
 
     /**
      * The main method.
@@ -355,7 +355,6 @@ public class HappyMersennePrime {
         } catch (IOException ex) {
             Logger.getLogger(HappyMersennePrime.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
